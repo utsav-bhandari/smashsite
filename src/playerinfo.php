@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php
     include "../includes/cleaning-functions.php";
-    include "../../smashsite_queries/homepage_query.php";
+    include "../../smashsite_queries/playerinfo_query.php";
     include "../includes/exit-nicely.php";
 
     $playertag = $_GET['playertag'];
