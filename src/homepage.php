@@ -6,10 +6,19 @@
     <title>Smash player and tournament data</title>
 </head>
 <body>
-    
-<?php
-include "../smashsite_queries/homepage_query.php";
-?>
+
+<form action="playerinfo.php" method="get">
+
+<p>
+    Search using a player tag:
+    <input type="text" name="playertag" size="10">
+</p>
+
+<p>
+    <input type="submit" value="submit">
+</p>
+
+</form>
 
 </body>
 </html>
