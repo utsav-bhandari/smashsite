@@ -8,7 +8,7 @@
     include "../../smashsite_queries/playerinfo_query.php";
     include "../includes/exit-nicely.php";
 
-    // tags hace special characters, cannot be cleaned
+    // tags have special characters, cannot be cleaned
     $playertag = $_GET['playertag'];
     
     $allrows = get_player_data($playertag);
@@ -70,11 +70,13 @@ if (count((array)$characterlist) == 0) {
 
 print("<br>\n");
 
-$tournaments = get_player_tourneys($allrows[0]['player_id']);
-// foreach ($tournaments as $value) {
-//     print($value);
-// }
-print_r($tournaments);
+$player_id = $allrows[0]['player_id'];
+
+$tournaments = get_player_tourneys($player_id);
+foreach ($tournaments as $value) {
+    print("<a href=\"tournamentinfo.php?key=" . $value['key'] . "&p_id=$player_id\">" . $value['cleaned_name'] . "</a><br>");
+}
+
 ?>
     
 </body>
