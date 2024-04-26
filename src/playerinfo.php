@@ -57,6 +57,7 @@ if ($country == "NULL" || $country == "") {
 
 print("<br>\n");
 
+print("Characters played:<br> \n");
 $characterlist = json_decode(str_replace("'", "\"", $allrows[0]['characters']));
 if (count((array)$characterlist) == 0) {
     print("<p>No characters found!</p>\n");
@@ -66,6 +67,14 @@ if (count((array)$characterlist) == 0) {
         print("<img src=\"../smash_images/$imagename\">");
     }
 }
+
+print("<br>\n");
+
+$tournaments = get_player_tourneys($allrows[0]['player_id']);
+// foreach ($tournaments as $value) {
+//     print($value);
+// }
+print_r($tournaments);
 ?>
     
 </body>
