@@ -8,20 +8,65 @@
     include "../../smashsite_queries/playerinfo_query.php";
     include "../includes/exit-nicely.php";
 
+    // tags hace special characters, cannot be cleaned
     $playertag = $_GET['playertag'];
     
     $allrows = get_player_data($playertag);
 
+    // this check prevents malicious inputs
     if (count($allrows) == 0) {
         print("<title>N/A</title>\n");
-        exit_nicely("Player does not exist in our databse!\n");
+        exit_nicely("Player does not exist in our database!\n");
     }
     print("<title>$playertag</title>\n");
 
-    print_r($allrows);
+    // print_r($allrows);
 ?>
 </head>
 <body>
+    
+<?php
+print("<h1>$playertag</h1>");
+
+$othertags = str_replace("'", "\"", $allrows[0]['all_tags']);
+print("Other tags: \n");
+foreach (json_decode($othertags) as $value) {
+    print($value . " \n");
+} 
+
+print("<br>\n");
+
+print("Socials: \n");
+$socials = str_replace("'", "\"", $allrows[0]['social']);
+foreach (json_decode($socials) as $value) {
+    foreach ($value as $username) {
+        print($username . " \n");
+    }
+} 
+
+print("<br>\n");
+
+$country = $allrows[0]['country'];
+
+if ($country == "NULL" || $country == "") {
+    print("Country: N/A\n");
+} else {
+    print("Country: $country\n");
+}
+
+
+print("<br>\n");
+
+$characterlist = json_decode(str_replace("'", "\"", $allrows[0]['characters']));
+if (count((array)$characterlist) == 0) {
+    print("<p>No characters found!</p>\n");
+} else {
+    foreach ((array)$characterlist as $key => $value) {
+        $imagename = ucfirst(str_replace("ultimate/", "", $key)) . ".png";
+        print("<img src=\"../smash_images/$imagename\">");
+    }
+}
+?>
     
 </body>
 </html>
