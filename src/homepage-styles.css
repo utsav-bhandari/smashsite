@@ -1,0 +1,43 @@
+.roster {
+  display: flex;
+  justify-content: center;
+}
+
+.roster tr {
+  display: flex;
+  justify-content: center;
+}
+
+.roster td {
+  border: solid black 2px;
+  width: 148px;
+  height: 125px;
+  margin: 2px;
+  overflow: clip;
+  padding: 0px;
+}
+
+.fighter {
+  position: relative;
+}
+
+.fighter p {
+  position: absolute;
+  bottom: 4%;
+  margin: 0px;
+
+  background-color: grey;
+}
+
+.fighter-name {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  font-family: SmashBold;
+  color: white;
+  -webkit-text-stroke: 1.1px black;
+  font-size: 20px;
+  line-height: 23px;
+}
