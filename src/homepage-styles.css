@@ -1,3 +1,7 @@
+@font-face {
+  font-family: SmashBold;
+  src: url("../smashfontbold.otf") format("opentype");
+}
 .roster {
   display: flex;
   justify-content: center;
