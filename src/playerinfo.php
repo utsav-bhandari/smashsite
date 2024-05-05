@@ -74,7 +74,12 @@ $player_id = $allrows[0]['player_id'];
 
 $tournaments = get_player_tourneys($player_id);
 foreach ($tournaments as $value) {
-    print("<a href=\"tournamentinfo.php?key=" . $value['key'] . "&p_id=$player_id\">" . $value['cleaned_name'] . "</a><br>");
+    print("<form action='/src/tournamentinfo.php'>");
+    print("<input type='hidden' name='t_name' value='{$value['cleaned_name']}'>");
+    print("<input type='hidden' name='key' value='{$value['key']}'>");
+    print("<input type='hidden' name='p_id' value='{$player_id}']}'>");
+    print("<p><input type='submit' value='{$value['cleaned_name']}'></p>");
+    print("</form>");
 }
 
 ?>
