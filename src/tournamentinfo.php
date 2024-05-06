@@ -12,8 +12,8 @@ include "../includes/cleaning-functions.php";
 include "../../smashsite_queries/tournamentinfo_query.php";
 include "../includes/exit-nicely.php";
 
-$tournament_key = $_GET['key'];
-$player_id = $_GET['p_id'];
+$tournament_key = $_POST['key'];
+$player_id = $_POST['p_id'];
 
 // print_r(get_set_data($tournament_key, $player_id));
 $sets = get_set_data($tournament_key, $player_id);
@@ -22,7 +22,7 @@ if (count($sets) == 0) {
     exit_nicely("<h1>No information on this tournament!<h1>\n");
 }
 
-$tournament_name = $_GET['t_name'];
+$tournament_name = $_POST['t_name'];
 $player_tag = get_tag($player_id)[0]['tag'];
 print("<h1>$player_tag</h1>");
 print("<h1>$tournament_name</h1>");
