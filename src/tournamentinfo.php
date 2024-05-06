@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="tournament-info.css">
     <title>Tournament data</title>
 </head>
 <body>
@@ -58,11 +57,11 @@ foreach ($sets as $key => $row) {
         $stage = $game['stage'];
 
         if ($winner_score != "" && $loser_score != "") {
-            print("$winner won the match $winner_score - $loser_score.\n");
+            print("$winner won the match $winner_score stocks - $loser_score stock.\n");
         } elseif ($winner_score != "" && $loser_score == "") {
-            print("$winner won the match by scoring $winner_score wins.\n");
+            print("$winner won the match by $winner_score stocks.\n");
         } elseif ($winner_score == "" && $loser_score != "") {
-            print("$loser lost the match with $loser_score wins.\n");
+            print("$winner won the match against $loser.\n");
         }
         if ($winner_char != "" && $loser_char != "") {
             print("$winner won by playing $winner_char against $loser's $loser_char.\n");
