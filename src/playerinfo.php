@@ -30,61 +30,82 @@
 <body>
     
 <?php
+print("<div id='playerinfo'>");
 print("<h1>$playertag</h1>");
 
 $othertags = str_replace("'", "\"", $allrows[0]['all_tags']);
-print("Other tags: \n");
+print("<div class='info'>");
+print("<p class='descriptor'>Other tags: </p>");
+print("<p>");
 foreach (json_decode($othertags) as $row) {
     print($row . " \n");
 } 
+print("</p>");
+print("</div>");
 
-print("<br>\n");
 
-print("Socials: \n");
+print("<div class='info'>");
+print("<p class='descriptor'>Socials: </p>");
+print("<p>");
 $socials = str_replace("'", "\"", $allrows[0]['social']);
 foreach (json_decode($socials) as $row) {
     foreach ($row as $username) {
         print($username . " \n");
     }
 } 
+print("</p>");
+print("</div>");
 
-print("<br>\n");
 
+print("<div class='info'>");
 $country = $allrows[0]['country'];
 
+print("<p class='descriptor'>Country: </p>");
+print("<p>");
 if ($country == "NULL" || $country == "") {
-    print("Country: N/A\n");
+    print("N/A\n");
 } else {
-    print("Country: $country\n");
+    print("$country\n");
 }
+print("</p>");
+print("</div>");
 
+print("</div>");
+print("<div id='game_data'>");
+    print("<div id='tournaments'>");
 
-print("<br>\n");
+    $player_id = $allrows[0]['player_id'];
 
-print("Characters played:<br> \n");
-$characterlist = json_decode(str_replace("'", "\"", $allrows[0]['characters']));
-if (count((array)$characterlist) == 0) {
-    print("<p>No characters found!</p>\n");
-} else {
-    foreach ((array)$characterlist as $key => $row) {
-        $imagename = ucfirst(str_replace("ultimate/", "", $key)) . ".png";
-        print("<img src=\"../smash_images/$imagename\">");
+    $tournaments = get_player_tourneys($player_id);
+    foreach ($tournaments as $value) {
+        print("<form action=\"tournamentinfo.php\">");
+        print("<input type='hidden' name='t_name' value='{$value['cleaned_name']}'>");
+        print("<input type='hidden' name='key' value='{$value['key']}'>");
+        print("<input type='hidden' name='p_id' value='{$player_id}']}'>");
+        print("<p><input class='t_submit' type='submit' value='{$value['cleaned_name']}'></p>");
+        print("</form>");
     }
-}
+    print("</div>");
 
-print("<br>\n");
+    print("<div>");
+    $characterlist = json_decode(str_replace("'", "\"", $allrows[0]['characters']));
+    if (count((array)$characterlist) == 0) {
+        print("<p>No characters found!</p>\n");
+    } else {
+        foreach ((array)$characterlist as $key => $row) {
+            $imagename = ucfirst(str_replace("ultimate/", "", $key)) . ".png";
+            print("<div class='character_container'>");
+            print("<img src=\"../smash_images/$imagename\">");
+            print("<div class='counter'>");
+            print("$row");
+            print("</div>");
+            print("</div>");
+        }
+    }
 
-$player_id = $allrows[0]['player_id'];
-
-$tournaments = get_player_tourneys($player_id);
-foreach ($tournaments as $value) {
-    print("<form action=\"tournamentinfo.php\">");
-    print("<input type='hidden' name='t_name' value='{$value['cleaned_name']}'>");
-    print("<input type='hidden' name='key' value='{$value['key']}'>");
-    print("<input type='hidden' name='p_id' value='{$player_id}']}'>");
-    print("<p><input type='submit' value='{$value['cleaned_name']}'></p>");
-    print("</form>");
-}
+    print("<br>\n");
+    print("</div>");
+print("</div>");
 
 ?>
     

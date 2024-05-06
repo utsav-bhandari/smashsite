@@ -1,0 +1,61 @@
+@import "fonts.css";
+
+body {
+  background-color: #F2F1EA;
+}
+
+#playerinfo {
+  background-color: #B7C5CE;
+}
+
+#playerinfo h1 {
+  font-family: SmashUltrabold;
+  font-size: 7em;
+  margin: 0px;
+  margin-top: -0.3em;
+  margin-bottom: -0.5em;
+}
+
+#playerinfo .info {
+  font-family: SmashBold;
+  font-size: 1.5em;
+  display: flex;
+  border-bottom: 4.5px solid #646464;
+}
+
+#playerinfo .info p {
+  margin: 0;
+  margin-left: 0.3em;
+}
+
+#playerinfo .info .descriptor {
+  color: #646464;
+}
+
+#game_data {
+  display: flex;
+}
+
+#tournaments {
+  overflow: auto;
+  height: 700px;
+}
+
+.character_container {
+  display: flex;
+  width: 300px;
+  font-family: SmashDemibold;
+  font-size: 4em;
+}
+
+.t_submit {
+  background-color: #FFC700;
+  border: 7px solid black;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+  border-radius: 4px;
+  font-family: SmashBold;
+}
+
+.t_submit:hover {
+  background-color: #ad8800;
+}
