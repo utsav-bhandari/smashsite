@@ -16,7 +16,10 @@
     // this check prevents malicious inputs
     if (count($allrows) == 0) {
         print("<title>N/A</title>\n");
-        exit_nicely("Player does not exist in our database!\n");
+        print("<script>\n");
+        print("document.write('<a href=\"' + document.referrer + '\">Go Back</a>')\n");
+        print("</script>\n");
+        exit_nicely("<br>\n<br>\n<h1>Player does not exist in our database!<h1>\n");
     }
     print("<title>$playertag</title>\n");
 
