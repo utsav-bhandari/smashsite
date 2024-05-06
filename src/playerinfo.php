@@ -16,7 +16,10 @@
     // this check prevents malicious inputs
     if (count($allrows) == 0) {
         print("<title>N/A</title>\n");
-        exit_nicely("Player does not exist in our database!\n");
+        print("<script>\n");
+        print("document.write('<a href=\"' + document.referrer + '\">Go Back</a>')\n");
+        print("</script>\n");
+        exit_nicely("<br>\n<br>\n<h1>Player does not exist in our database!<h1>\n");
     }
     print("<title>$playertag</title>\n");
 
@@ -74,11 +77,7 @@ $player_id = $allrows[0]['player_id'];
 
 $tournaments = get_player_tourneys($player_id);
 foreach ($tournaments as $value) {
-<<<<<<< Updated upstream
-    print("<form action='./tournamentinfo.php'>");
-=======
     print("<form action=\"tournamentinfo.php\">");
->>>>>>> Stashed changes
     print("<input type='hidden' name='t_name' value='{$value['cleaned_name']}'>");
     print("<input type='hidden' name='key' value='{$value['key']}'>");
     print("<input type='hidden' name='p_id' value='{$player_id}']}'>");
