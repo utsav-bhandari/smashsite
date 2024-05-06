@@ -1,0 +1,29 @@
+@font-face {
+  font-family: SmashLight;
+  src: url("../smashfontlight.otf") format("opentype");
+}
+
+@font-face {
+  font-family: SmashMedium;
+  src: url("../smashfontmedium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: SmashDemibold;
+  src: url("../smashfontdemibold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: SmashBold;
+  src: url("../smashfontbold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: SmashExtrabold;
+  src: url("../smashfontextrabold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: SmashUltrabold;
+  src: url("../smashfontultrabold.otf") format("opentype");
+}

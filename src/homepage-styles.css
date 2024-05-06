@@ -1,7 +1,6 @@
-@font-face {
-  font-family: SmashBold;
-  src: url("../smashfontbold.otf") format("opentype");
-}
+@import "fonts.css";
+/* * {border: 1px solid lime;}*/
+
 .roster {
   display: flex;
   justify-content: center;
@@ -39,7 +38,7 @@
   width: 100%;
   text-align: center;
   margin: 0;
-  font-family: SmashBold;
+  font-family: SmashUltrabold;
   color: white;
   -webkit-text-stroke: 1.1px black;
   font-size: 20px;
