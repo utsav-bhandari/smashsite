@@ -34,6 +34,10 @@ print("<p style='font-size: 1.5em;'>$tournament_name</p>");
 ?>
 </div>
 
+<script>
+    document.write('<a href="' + document.referrer + '">Go Back</a>');
+</script>
+
 <?php
 function cool_bar($player_name, $score_1, $player_won, $body, $score_2 = 0,) {
     $status_emoji = '👑';
@@ -146,6 +150,7 @@ foreach ($sets as $row) {
     print(cool_bar($winner, $row[$positionality[$loser_id]], $player_won, $body, $row[$positionality[$row['winner_id']]]));
 }
 ?>
+
 
 </body>
 </html>
