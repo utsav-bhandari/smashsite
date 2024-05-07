@@ -70,7 +70,7 @@
     </table>
 </div>
 
-<form action="playerinfo.php" method="get">
+<form action="filtertagpage.php" method="get">
 
 <p>
     Search using a player tag:

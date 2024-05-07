@@ -10,14 +10,8 @@
     include "../includes/exit-nicely.php";
 
     // tags have special characters, cannot be cleaned
-    if (isset($_GET['player_id'])) {
-        $identifier = $_GET['player_id'];
-        $allrows = get_player_data_id($identifier);
-    } else {
-        $identifier = $_GET['playertag'];
-        $allrows = get_player_data_tag($identifier);
-    }
-    
+    $identifier = $_GET['player_id'];
+    $allrows = get_player_data_id($identifier);
 
     // this check prevents malicious inputs
     if (count($allrows) == 0) {
