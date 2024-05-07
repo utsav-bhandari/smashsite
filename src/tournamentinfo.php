@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="tournamentinfo-styles.css">
+    <link rel="stylesheet" href="playerinfo-styles.css">
     <title>Tournament data</title>
 </head>
 <body>
@@ -25,9 +26,13 @@ if (count($sets) == 0) {
 
 $tournament_name = $_POST['t_name'];
 $player_tag = get_tag($player_id)[0]['tag'];
-print("<h1>$player_tag</h1>");
-print("<h1>$tournament_name</h1>");
 ?>
+<div id='playerinfo'>
+<?php
+print("<h1>$player_tag</h1>");
+print("<p style='font-size: 1.5em;'>$tournament_name</p>");
+?>
+</div>
 
 <?php
 function cool_bar($player_name, $score_1, $player_won, $body, $score_2 = 0,) {

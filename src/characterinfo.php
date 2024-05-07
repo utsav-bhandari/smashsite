@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="characterinfo-styles.css">
     <link rel="stylesheet" href="playerinfo-styles.css">
+    <link rel="stylesheet" href="filterpage.css">
     <title>
     <?php
     include "../includes/cleaning-functions.php";
@@ -24,16 +25,26 @@
 
     <?php
     $char = get_characters($character);
+    print("<table class='filter_table' style='width: 30%;'>");
     foreach ($char as $data) {
-      print("<form action=\"playerinfo.php\" method = \"get\">");
+      print("<tr onclick=\"window.location='playerinfo.php?player_id={$data['player_id']}'\">");
+      print("<td>");
+      print("<u>" . $data['tag'] . "</u>");
+      print("</td>");
+      print("<td>");
+      print($data['the_count']);
+      print("</td>");
+      print("</tr>");
+    /*  print("<form action=\"playerinfo.php\" method = \"get\">");
       print("<input type='hidden' name='player_id' value=\"{$data['player_id']}\">");
       print("<input style='margin: 3px;' class='t_submit' type='submit' value=\"");
       print($data['tag']);
       print(" ");
       print($data['the_count']);
       print("\">");
-      print("</form>");
+      print("</form>");*/
     }
+    print("</table>");
     ?>
 </body>
 </html>
