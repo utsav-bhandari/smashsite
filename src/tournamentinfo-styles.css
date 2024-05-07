@@ -1,0 +1,39 @@
+@import "fonts.css";
+* {font-family: SmashBold;}
+
+.bb:hover {
+  border: 5px solid gold;
+  background-color: gold;
+  width: fit-content;
+}
+
+.bb {
+  border: 5px solid rgba(255, 217, 0, 0);
+  width: fit-content;
+}
+
+.info {
+  width: fit-content;
+  background-color: rgb(209, 235, 243);
+  border: 5px solid black;
+  border-radius: 5px;
+}
+
+.info .winner {
+  background-color: rgb(30, 165, 30);
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.info .winner-score {
+  padding-right: 7px;
+}
+
+.info summary {
+  list-style: none;
+  display: flex;
+}
+
+.info summary::-webkit-details-marker {
+  display: none;
+}

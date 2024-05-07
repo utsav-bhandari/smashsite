@@ -83,7 +83,7 @@
 
 </form>
 
-<!-- <div class="dropdown">
+<div class="dropdown">
     <div id="theDropdown" class="dropdown-content">
         <input type="text" placeholder="Search player..." id="theInput" onkeyup="filterFunction()">
         <a href="#">Name</a>
@@ -93,11 +93,10 @@
         <a href="#">Name</a>
         <a href="#">Name</a>
     </div>
-</div> -->
+</div>
 
 </body>
 <script>
-/*
     function filterFunction() {
         console.log("aisdjaksd");
         var input, filter, ul, li, a, i;
@@ -113,6 +112,6 @@
               a[i].style.display = "none";
             }
         }
-    } */
+    } 
 </script>
 </html>

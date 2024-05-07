@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tournamentinfo-styles.css">
     <title>Tournament data</title>
 </head>
 <body>
@@ -26,26 +27,85 @@ $tournament_name = $_POST['t_name'];
 $player_tag = get_tag($player_id)[0]['tag'];
 print("<h1>$player_tag</h1>");
 print("<h1>$tournament_name</h1>");
+?>
 
-$cache_map = [];
-foreach ($sets as $key => $row) {
-    // $opponent_tag = get_tag($opponenent_id)[0]['tag'];
+<?php
+function cool_bar($player_name, $score_1, $player_won, $body, $score_2 = 0,) {
+    $status_emoji = '👑';
+    $lose_style = 'background-color: red;';
+    if (!$player_won) $status_emoji = '💀';
+    else $lose_style = '';
 
-    // print_r($row);
-    $opponenent_id = ($player_id == $row['p1_id']) ? $row['p2_id'] : $row['p1_id'];
-    $opponent_tag = "";
-    if ($cache_map[$opponenent_id] == null) {
-        $opponent_tag = get_tag($opponenent_id)[0]['tag'];
-        $cache_map[$opponenent_id] = $opponent_tag;
-    } else {
-        $opponent_tag = $cache_map[$opponenent_id];
+    if ($body != "") {
+        $player_name = "<u>" . $player_name ."</u>";
     }
-    // $opponent_tag = get_tag($opponenent_id);
+
+    return <<<BEGIN
+    <div class='bb'>
+    <details class='info'>
+        <summary style='overflow: hidden;'>
+            <div class='winner' style='z-index: 1; overflow: hidden; $lose_style'>
+            $status_emoji 
+            $player_name
+            </div>
+            <div class='winner' style='z-index: 0; width: 10px; height: auto; transform: translateX(-11px) skewX(-35deg); $lose_style'>
+            </div>
+            <div class='winner-score'>
+                $score_1
+                —
+                $score_2
+            </div>
+        </summary>
+        $body
+    </details>
+    </div class='bb'>
+    BEGIN;
+}
+?>
+
+<?php
+$cache_map = [];
+foreach ($sets as $row) {
+    $positionality = [];
+    $opponent_id = "";
+    if ($player_id == $row['p1_id']) {
+        $opponent_id = $row['p2_id']; 
+        $positionality[$opponent_id] = 'p2_score';
+        $positionality[$player_id] = 'p1_score';
+        $positionality['p1_score'] = $opponent_id;
+        $positionality['p2_score'] = $player_id;
+    } else {
+        $opponent_id = $row['p1_id'];
+        $positionality[$opponent_id] = 'p1_score';
+        $positionality[$player_id] = 'p2_score';
+        $positionality['p1_score'] = $player_id;
+        $positionality['p2_score'] = $opponent_id;
+    }
+
+    $opponent_tag = "";
+    if ($cache_map[$opponent_id] == null) {
+        $opponent_tag = get_tag($opponent_id)[0]['tag'];
+        $cache_map[$opponent_id] = $opponent_tag;
+    } else {
+        $opponent_tag = $cache_map[$opponent_id];
+    }
+
+    $player_won = $row['winner_id'] == $player_id;
+
+    $winner = "";
+    $loser_id = "";
+    if ($row['winner_id'] == $player_id) {
+        $winner = $player_tag;
+        $loser_id = $positionality[$positionality[$row['winner_id']]];
+    } else {
+        $winner = $opponent_tag;
+        $loser_id = $positionality[$positionality[$row['winner_id']]];
+    } 
+
+    $body = "";
 
     $game_info = json_decode(str_replace("'", "\"", $row['game_data']));    
-    // print_r($game_info);
     foreach ($game_info as $game_num => $game) {
-        // print_r($game);
         $game = (array)$game;
 
         $winner = ($game['winner_id'] == $player_id) ? $player_tag : $opponent_tag;
@@ -56,31 +116,27 @@ foreach ($sets as $key => $row) {
         $loser_char = ucfirst(str_replace("ultimate/", "", $game['loser_char']));
         $stage = $game['stage'];
 
-        if ($winner_score != "" && $loser_score != "") {
-            print("$winner won the match $winner_score stocks - $loser_score stock.\n");
-        } elseif ($winner_score != "" && $loser_score == "") {
-            print("$winner won the match by $winner_score stocks.\n");
-        } elseif ($winner_score == "" && $loser_score != "") {
-            print("$winner won the match against $loser.\n");
-        }
+        $inner_body = "";
+        if ($winner_score == "") $winner_score = "?";
         if ($winner_char != "" && $loser_char != "") {
-            print("$winner won by playing $winner_char against $loser's $loser_char.\n");
+            $inner_body = $inner_body . ("$winner won by playing $winner_char against $loser's $loser_char.\n");
         } elseif ($winner_char != "" && $loser_char == "") {
-            print("$winner won by playing $winner_char against $loser.\n");
+            $inner_body = $inner_body . ("$winner won by playing $winner_char against $loser.\n");
         } elseif ($winner_char == "" && $loser_char != "") {
-            print("$loser lost against $winner while playing $loser_char.\n");
+            $inner_body = $inner_body . ("$loser lost against $winner while playing $loser_char.\n");
         }
         if ($stage != "") {
-            print("It took place in $stage.\n");
+            $inner_body = $inner_body . ("It took place in $stage.\n");
         }
-        print("</p>");
-    }    
+        $body = $body . (cool_bar($winner, $winner_score, $player_tag == $winner, $inner_body));
+    }
 
+    if ($player_won)
+    print(cool_bar($winner, $row[$positionality[$row['winner_id']]], $player_won, $body, $row[$positionality[$loser_id]]));
+    else
+    print(cool_bar($winner, $row[$positionality[$loser_id]], $player_won, $body, $row[$positionality[$row['winner_id']]]));
 }
-
-
 ?>
-
 
 </body>
 </html>
