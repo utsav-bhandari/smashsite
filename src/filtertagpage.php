@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find your tag</title>
+    <link rel="stylesheet" href="filterpage.css">
 </head>
 <body>
     
@@ -24,7 +25,7 @@
     
     print("<h1>Multiple tags exist with the same name. Here are all of them:</h1>\n");
     
-    print("<table>\n");
+    print("<table class=\"filter_table\">\n");
     print("<tr>\n");
     foreach (reset($allrows) as $key => $value) {
         if ($key == "player_id") {
@@ -51,18 +52,23 @@
             if ($i > 2) {
                 break;
             }
-            print($parsed_data[$i] . " \n");
+            if ($i < 2 && ($i + 1 != sizeof($parsed_data) - 1)) {
+                print($parsed_data[$i] . ", \n");
+            } else {
+                print($parsed_data[$i] . "\n");
+            }
         } 
         print("</td>\n"); 
 
         $parsed_data2 = json_decode(str_replace("'", "\"",$row['prefixes']), true);
 
         print("<td>\n");
-        for ($i=0; $i < sizeof($parsed_data2) - 1; $i++) { 
-            if ($i > 2) {
-                break;
+        for ($i=0; $i < sizeof($parsed_data2); $i++) { 
+            if ($i < 2 && ($i + 1 != sizeof($parsed_data2))) {
+                print($parsed_data2[$i] . ", \n");
+            } else {
+                print($parsed_data2[$i] . "\n");
             }
-            print($parsed_data2[$i] . " \n");
         } 
         print("</td>\n"); 
 
