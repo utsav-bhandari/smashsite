@@ -46,7 +46,7 @@
         print("<a href=\"playerinfo.php?player_id={$row['player_id']}\" target=\"_blank\">{$row['Tag']}</a>\n");
         print("</td>\n");
 
-        $parsed_data = json_decode(str_replace("'", "\"", $row['other tags']), true);
+        $parsed_data = json_decode($row['other tags'], true);
         
         print("<td>\n");
         $count = count($parsed_data);
@@ -74,7 +74,7 @@
         
         print("</td>\n"); 
 
-        $parsed_data2 = json_decode(str_replace("'", "\"",$row['Prefixes']), true);
+        $parsed_data2 = json_decode($row['Prefixes'], true);
 
         print("<td>\n");
         $count = count($parsed_data2);
