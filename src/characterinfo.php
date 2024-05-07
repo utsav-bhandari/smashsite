@@ -26,7 +26,7 @@
     $char = get_characters($character);
     foreach ($char as $data) {
       print("<form action=\"playerinfo.php\" method = \"get\">");
-      print("<input type='hidden' name='playertag' value=\"{$data['tag']}\">");
+      print("<input type='hidden' name='player_id' value=\"{$data['player_id']}\">");
       print("<input style='margin: 3px;' class='t_submit' type='submit' value='");
       print($data['tag']);
       print(" ");
