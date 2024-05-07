@@ -133,7 +133,11 @@ foreach ($sets as $row) {
         if ($stage != "") {
             $inner_body = $inner_body . ("It took place in $stage.\n");
         }
+        if ($player_tag == $winner) {
         $body = $body . (cool_bar($winner, $winner_score, $player_tag == $winner, $inner_body));
+        } else {
+        $body = $body . (cool_bar($winner, 0, $player_tag == $winner, $inner_body, $winner_score));
+        }
     }
 
     if ($player_won)
