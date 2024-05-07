@@ -10,9 +10,14 @@
     include "../includes/exit-nicely.php";
 
     // tags have special characters, cannot be cleaned
-    $playertag = $_GET['playertag'];
+    if (isset($_GET['player_id'])) {
+        $identifier = $_GET['player_id'];
+        $allrows = get_player_data_id($identifier);
+    } else {
+        $identifier = $_GET['playertag'];
+        $allrows = get_player_data_tag($identifier);
+    }
     
-    $allrows = get_player_data($playertag);
 
     // this check prevents malicious inputs
     if (count($allrows) == 0) {
@@ -22,7 +27,7 @@
         print("</script>\n");
         exit_nicely("<br>\n<br>\n<h1>Player does not exist in our database!<h1>\n");
     }
-    print("<title>$playertag</title>\n");
+    print("<title>{$allrows[0]['tag']}</title>\n");
 
     // print_r($allrows);
 ?>
@@ -31,7 +36,7 @@
     
 <?php
 print("<div id='playerinfo'>");
-print("<h1>$playertag</h1>");
+print("<h1>{$allrows[0]['tag']}</h1>");
 
 $othertags = str_replace("'", "\"", $allrows[0]['all_tags']);
 print("<div class='info'>");
@@ -88,11 +93,13 @@ print("<div id='game_data'>");
     print("</div>");
 
     print("<div id='characters'>");
-    $characterlist = json_decode(str_replace("'", "\"", $allrows[0]['characters']));
-    if (count((array)$characterlist) == 0) {
-        print("<p>No characters found!</p>\n");
+    $characterlist = (array)json_decode(str_replace("'", "\"", $allrows[0]['characters']));
+    arsort($characterlist);
+    
+    if (count($characterlist) == 0 || (isset($characterlist[0]) && count($characterlist) == 1)) {
+        print("<h1>No characters found!<h1>\n");
     } else {
-        foreach ((array)$characterlist as $key => $row) {
+        foreach ($characterlist as $key => $row) {
             $imagename = ucfirst(str_replace("ultimate/", "", $key)) . ".png";
             print("<div class='character_container'>");
             print("<img src=\"../smash_images/$imagename\">");
