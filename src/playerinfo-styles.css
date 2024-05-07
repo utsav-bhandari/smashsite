@@ -52,6 +52,7 @@ body {
 .character_container {
   display: flex;
   width: 300px;
+  height: min-content;
   font-family: SmashDemibold;
   font-size: 4em;
 }
