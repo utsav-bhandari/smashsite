@@ -13,6 +13,15 @@
   $row_len = 13;
 ?>
 
+<form action="filtertagpage.php" method="get">
+<div class="dropdown">
+    <div id="theDropdown" class="dropdown-content">
+        <input type="text" placeholder="Search player..." id="theInput" name="playertag">
+        <input type="submit" value="submit">
+    </div>
+</div>
+</form>
+
 <div class="roster">
     <table>
         <?php
@@ -70,48 +79,5 @@
     </table>
 </div>
 
-<form action="filtertagpage.php" method="get">
-
-<p>
-    Search using a player tag:
-    <input type="text" name="playertag" size="10">
-</p>
-
-<p>
-    <input type="submit" value="submit">
-</p>
-
-</form>
-
-<div class="dropdown">
-    <div id="theDropdown" class="dropdown-content">
-        <input type="text" placeholder="Search player..." id="theInput" onkeyup="filterFunction()">
-        <a href="#">Name</a>
-        <a href="#">Mame</a>
-        <a href="#">Name</a>
-        <a href="#">Name</a>
-        <a href="#">Name</a>
-        <a href="#">Name</a>
-    </div>
-</div>
-
 </body>
-<script>
-    function filterFunction() {
-        console.log("aisdjaksd");
-        var input, filter, ul, li, a, i;
-        input = document.getElementById("theInput");
-        filter = input.value.toUpperCase();
-        div = document.getElementById("theDropdown");
-        a = div.getElementsByTagName("a");
-        for (i = 0; i < a.length; i++) {
-            txtValue = a[i].textContent || a[i].innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-              a[i].style.display = "";
-            } else {
-              a[i].style.display = "none";
-            }
-        }
-    } 
-</script>
 </html>
