@@ -22,8 +22,8 @@
 .filter_table td {
   padding: 12px;
   text-align: left;
-  border: 7px solid black;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+  border: 3px solid black;
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 1);
   font-family: SmashBold;
 }
 
@@ -31,7 +31,7 @@
 .filter_table th {
   background-color: #FFC700;
   color: black;
-  border: 1px solid #FFC700;
+  text-align: center;
 }
 
 
@@ -48,13 +48,6 @@
 .filter_table tr:hover td {
   transition: background-color 0.3s ease;
 }
-
-
-.filter_table th,
-.filter_table td {
-  border: 1px solid #dddddd;
-}
-
 
 .filter_table a {
   color: #0366d6;
