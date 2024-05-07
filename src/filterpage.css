@@ -1,19 +1,72 @@
-table {
-    border-collapse: collapse;
+@import "fonts.css";
+
+#noticetext h1 {
+  font-family: SmashUltrabold;
+  font-size: 7em;
+  margin: 0px;
+  margin-top: -0.3em;
+  margin-bottom: -0.5em;
+}
+
+#noticetext {
+  background-color: #B7C5CE;
+}
+
+.filter_table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.filter_table th,
+.filter_table td {
+  padding: 12px;
+  text-align: left;
+  border: 7px solid black;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+  font-family: SmashBold;
+}
+
+
+.filter_table th {
+  background-color: #FFC700;
+  color: black;
+  border: 1px solid #FFC700;
+}
+
+
+.filter_table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+
+.filter_table tr:hover {
+  background-color: #ddd;
+}
+
+
+.filter_table tr:hover td {
+  transition: background-color 0.3s ease;
+}
+
+
+.filter_table th,
+.filter_table td {
+  border: 1px solid #dddddd;
+}
+
+
+.filter_table a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.filter_table a:hover {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 768px) {
+  .filter_table {
+      font-size: 14px;
   }
-   th {
-    background: #ccc;
-  }
-  
-  th, td {
-    border: 1px solid #ccc;
-    padding: 8px;
-  }
-  
-  tr:nth-child(even) {
-    background: #efefef;
-  }
-  
-  tr:hover {
-    background: #d1d1d1;
-  }
+}

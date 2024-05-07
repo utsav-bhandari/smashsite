@@ -22,8 +22,9 @@
     } elseif (count($allrows) == 0) {
         exit_nicely("<h1>No such tag exists within the official database!<h1>\n");
     }
-    
-    print("<h1>Multiple tags exist with the same name. Here are all of them:</h1>\n");
+    print("<div id=\"noticetext\" style=\"margin: 2px; margin-bottom: 2.5em;\">");
+    print("<h1 style=\"font-size: 2em;\">Multiple tags exist with the same name. Here are all of them:</h1>\n");
+    print("</div>");
     
     print("<table class=\"filter_table\">\n");
     print("<tr>\n");
@@ -42,49 +43,93 @@
         print("<tr>\n");
 
         print("<td>\n");
-        print("<a href=\"playerinfo.php?player_id={$row['player_id']}\" target=\"_blank\">{$row['tag']}</a>\n");
+        print("<a href=\"playerinfo.php?player_id={$row['player_id']}\" target=\"_blank\">{$row['Tag']}</a>\n");
         print("</td>\n");
 
-        $parsed_data = json_decode(str_replace("'", "\"", $row['all_tags']), true);
+        $parsed_data = json_decode(str_replace("'", "\"", $row['other tags']), true);
         
         print("<td>\n");
-        for ($i=0; $i < sizeof($parsed_data) - 1; $i++) { 
-            if ($i > 2) {
-                break;
+        $count = count($parsed_data);
+
+        for ($i = 0; $i < $count - 1; $i++) {
+            if ($i == 0) {
+                print($parsed_data[$i]);
+                if ($count > 2) {
+                    print(", \n");
+                }
+            } elseif ($i == 1) {
+                print($parsed_data[$i]);
+                if ($count > 3) {
+                    print(", \n");
+                }
+            } elseif ($i == 2) {
+                print($parsed_data[$i]);
+                if ($count > 4) {
+                    print(", etc.\n");
+                    break;
+                }
             }
-            if ($i < 2 && ($i + 1 != sizeof($parsed_data) - 1)) {
-                print($parsed_data[$i] . ", \n");
-            } else {
-                print($parsed_data[$i] . "\n");
-            }
-        } 
+        }
+        
+        
         print("</td>\n"); 
 
-        $parsed_data2 = json_decode(str_replace("'", "\"",$row['prefixes']), true);
+        $parsed_data2 = json_decode(str_replace("'", "\"",$row['Prefixes']), true);
 
         print("<td>\n");
-        for ($i=0; $i < sizeof($parsed_data2); $i++) { 
-            if ($i < 2 && ($i + 1 != sizeof($parsed_data2))) {
-                print($parsed_data2[$i] . ", \n");
-            } else {
-                print($parsed_data2[$i] . "\n");
+        $count = count($parsed_data2);
+        for ($i = 0; $i < $count; $i++) {
+            if ($i == 0) {
+                print($parsed_data2[$i]);
+                if ($count > 1) {
+                    print( ", \n");
+                }
+            } elseif ($i == 1) {
+                print( $parsed_data2[$i]);
+                if ($count > 2) {
+                    print( ", \n");
+                }
+            } elseif ($i == 2) {
+                print( $parsed_data2[$i]);
+                if ($count > 3) {
+                    print( ", etc.\n");
+                    break;
+                }
             }
-        } 
+        }
+        
         print("</td>\n"); 
 
-        $parsed_data3 = json_decode(str_replace("'", "\"", $row['social']), true);
+        $parsed_data3 = json_decode(str_replace("'", "\"", $row['Social']), true);
 
         print("<td>\n");
+        $count = count($parsed_data3['twitter']);
         for ($i=0; $i < sizeof($parsed_data3['twitter']); $i++) { 
-            print($parsed_data3['twitter'][$i] . "\n");
+            if ($i == 0) {
+                print($parsed_data3['twitter'][$i]);
+                if ($count > 1) {
+                    print( ", \n");
+                }
+            } elseif ($i == 1) {
+                print($parsed_data3['twitter'][$i]);
+                if ($count > 2) {
+                    print( ", \n");
+                }
+            } elseif ($i == 2) {
+                print($parsed_data3['twitter'][$i]);
+                if ($count > 3) {
+                    print( ", etc.\n");
+                    break;
+                }
+            }
         }
         print("</td>\n"); 
 
         print("<td>\n");
-        print("{$row['country']}\n");
+        print("{$row['Country']}\n");
         print("</td>\n");
 
-        $parsed_data5 = json_decode(str_replace("'", "\"", $row['characters']), true);
+        $parsed_data5 = json_decode(str_replace("'", "\"", $row['Most Played']), true);
         print("<td>\n");
         if ($parsed_data5 != "") {
             arsort($parsed_data5);
@@ -96,10 +141,6 @@
         print("</tr>\n");
     }
     print("</table>\n");
-    // print($allrows['all_tag']);
-    // print_r($sub_table);
-
-    //print_table($sub_table, ['l', 'l', 'l', 'l', 'l', 'l']);
 ?>
 
 
