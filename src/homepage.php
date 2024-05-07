@@ -24,9 +24,7 @@
           $uppername = strtoupper($fighters[$i]);
           if ($uppername == "MII SWORDFIGHTER") $uppername = "MII S. FIGHTER";
           if ($uppername == "WII FIT TRAINER") $uppername = "Wii Fit TRAINER";
-          print("<div style='position: absolute;width: inherit;height: inherit;'>
-                 <p class='fighter-name'>{$uppername}</p>\n
-                 </div>");
+          print("<div style='position: absolute;width: inherit;height: inherit;'>");
           $name = $fighters[$i];
           if ($name == "Donkey Kong") $name = "Donkeykong";
           if ($name == "Dark Samus") $name = "Darksamus";
@@ -57,7 +55,12 @@
           if ($name == "Mii Brawler") $name = "Mii";
           if ($name == "Mii Swordfighter") $name = "Mii";
           if ($name == "Mii Gunner") $name = "Mii";
-          print("<img src='../smash_images/{$name}.png' alt='{$fighters[$i]}'>\n");
+          $lower = strtolower($name);
+          print("<a href=\"characterinfo.php?character=$lower\">");
+          print("<img src='../smash_images/{$name}.png' alt='{$fighters[$i]}'>");
+          print("</a>");
+          print("<p class='fighter-name'>{$uppername}</p>");
+          print("</div>");
           print("</td>\n");
           if ($i + 1 / $row_len == 1) {
               print("</tr>");
@@ -80,5 +83,36 @@
 
 </form>
 
+<!-- <div class="dropdown">
+    <div id="theDropdown" class="dropdown-content">
+        <input type="text" placeholder="Search player..." id="theInput" onkeyup="filterFunction()">
+        <a href="#">Name</a>
+        <a href="#">Mame</a>
+        <a href="#">Name</a>
+        <a href="#">Name</a>
+        <a href="#">Name</a>
+        <a href="#">Name</a>
+    </div>
+</div> -->
+
 </body>
+<script>
+/*
+    function filterFunction() {
+        console.log("aisdjaksd");
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("theInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("theDropdown");
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+            txtValue = a[i].textContent || a[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              a[i].style.display = "";
+            } else {
+              a[i].style.display = "none";
+            }
+        }
+    } */
+</script>
 </html>

@@ -87,7 +87,7 @@ print("<div id='game_data'>");
     }
     print("</div>");
 
-    print("<div>");
+    print("<div id='characters'>");
     $characterlist = json_decode(str_replace("'", "\"", $allrows[0]['characters']));
     if (count((array)$characterlist) == 0) {
         print("<p>No characters found!</p>\n");
