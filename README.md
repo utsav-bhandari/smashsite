@@ -1,5 +1,9 @@
 # Smashsite
 
+## Notice: The database this is hosted on will likely be shut down in the near future, hence
+## the images and descriptions. The data was obtained from ThePlayerDatabase here: https://github.com/smashdata/ThePlayerDatabase
+## and modified to fit our database and needs. 
+
 ### This is the homepage where you can search for players using their tag or
 ### click on an icon to view the top 10 players that have played that character the most.
 ![Homepage](https://github.com/utsav-bhandari/smashsite/assets/145168913/a8d49e5c-509d-4b02-b549-958e62729030)
