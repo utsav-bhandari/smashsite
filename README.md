@@ -1,4 +1,4 @@
-# smashsite
+# Smashsite
 
 ### This is the homepage where you can search for players using their tag or
 ### click on an icon to view the top 10 players that have played that character the most.
