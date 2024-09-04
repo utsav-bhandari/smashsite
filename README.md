@@ -1,8 +1,8 @@
 # Smashsite
 
  ```
-**Notice**: The database this is hosted on will likely be shut down in the near future, hence 
-the images and descriptions. The data was obtained from ThePlayerDatabase here:
+**Notice**: The database this is hosted on will likely be shut down in the near future because of expenses,
+hence the images and descriptions. The data was obtained from ThePlayerDatabase here:
 https://github.com/smashdata/ThePlayerDatabase and modified to fit our database and needs. 
 ```
 
