@@ -9,10 +9,10 @@ https://github.com/smashdata/ThePlayerDatabase and modified to fit our database 
 Here's the landing page (if it is still up) : https://warren.sewanee.edu/bhandu0/cs284/smashsite/src/homepage.php
 
 ### This is the homepage where you can search for players using their tag or
-### click on an icon to view the top 10 players that have played that character the most.
+### Click on an icon to view the top 10 players that have played that character the most.
 ![Homepage](https://github.com/utsav-bhandari/smashsite/assets/145168913/a8d49e5c-509d-4b02-b549-958e62729030)
 
-### Result of clicking on the Kriby icon
+### Result of clicking on the Kirby icon
 ![icon_click](https://github.com/utsav-bhandari/smashsite/assets/145168913/a4f0177b-d449-44c4-b63a-2f28659a2679)
 
 ### Player Search
